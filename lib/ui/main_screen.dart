@@ -2,15 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:price_calculator/ui/columns/additional_services_column.dart';
 import 'package:price_calculator/ui/footer/custom_app_footer.dart';
-import 'package:price_calculator/ui/widgets/confirm_button.dart';
 import 'package:price_calculator/ui/widgets/custom_input_field.dart';
 import 'package:price_calculator/ui/widgets/heading_container.dart';
-import 'package:price_calculator/ui/widgets/message%20container.dart';
 import '../labels.dart';
-import 'package:provider/provider.dart';
-import '../sum.dart';
-import 'columns/special_delivery_column.dart';
-import 'columns/standard_delivery_column.dart';
 import 'header/custom_app_header.dart';
 
 class MainScreen extends StatefulWidget {
@@ -70,139 +64,263 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                   ),
-              Center(
-                child: Column(
-                  children: [
-                    HeadingContainer(label: kStandardDelivery),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 177,
-                          height: 19,
-                          child: Text(
-                            kDeliveryMass,
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                          ),
+              MediaQuery.of(context).size.width > 950 ? Column(
+                children: [
+                  HeadingContainer(label: kStandardDelivery),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 177,
+                        height: 19,
+                        child: Text(
+                          kDeliveryMass,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
-                        SizedBox(width: 250),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20, top: 15),
-                          child: Container(
-                            width: 450,
-                            height: 60,
-                            padding: EdgeInsets.only(left: 8, top: 8),
-                            decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
-                              child: DropdownButton<String>(
-                                isExpanded: true,
-                                underline: Container(color: Colors.transparent),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    startingValueStandardWeight = newValue!;
-                                  });
-                                },
-                                hint: startingValueStandardWeight == ""
-                                    ? Text("Izaberite", style: TextStyle(fontSize: 14))
-                                    : Text(startingValueStandardWeight, style: TextStyle(fontSize: 14)),
-                                items: <String>[
-                                  '',
-                                  '0kg - 0.5kg',
-                                  '0.5kg - 1kg',
-                                  '1kg - 2kg',
-                                  '2kg - 5kg',
-                                  '5kg - 10kg',
-                                  '10kg - 15kg',
-                                  '15kg - 20kg',
-                                  '20kg - 30kg',
-                                  '30kg - 50kg'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                              ),
+                      ),
+                      SizedBox(width: 250),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0, right: 20, top: 15),
+                        child: Container(
+                          width: 450,
+                          height: 60,
+                          padding: EdgeInsets.only(left: 8, top: 8),
+                          decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(color: Colors.transparent),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  startingValueStandardWeight = newValue!;
+                                });
+                              },
+                              hint: startingValueStandardWeight == ""
+                                  ? Text("Izaberite", style: TextStyle(fontSize: 14))
+                                  : Text(startingValueStandardWeight, style: TextStyle(fontSize: 14)),
+                              items: <String>[
+                                '',
+                                '0kg - 0.5kg',
+                                '0.5kg - 1kg',
+                                '1kg - 2kg',
+                                '2kg - 5kg',
+                                '5kg - 10kg',
+                                '10kg - 15kg',
+                                '15kg - 20kg',
+                                '20kg - 30kg',
+                                '30kg - 50kg'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
                             ),
                           ),
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 177,
+                        height: 19,
+                        child: Text(
+                          kDelivery,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(width: 250),
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.0, right: 20, top: 15),
+                        child: Container(
+                          width: 450,
+                          height: 60,
+                          padding: EdgeInsets.only(left: 8, top: 8),
+                          decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(color: Colors.transparent),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  startingValueStandardDelivery = newValue!;
+                                });
+                              },
+                              hint: startingValueStandardDelivery == ""
+                                  ? Text("Izaberite uslugu", style: TextStyle(fontSize: 14))
+                                  : Text(startingValueStandardDelivery, style: TextStyle(fontSize: 14)),
+                              items: <String>['', 'Danas za danas', 'Danas za sutra do 12h', 'Danas za sutra do 18h']
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  enabled: value == 'Danas za sutra do 12h' ? false : true,
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: value == 'Danas za sutra do 12h' ? TextStyle(color: Colors.black12) : TextStyle(color: Colors.black),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 177,
+                        height: 19,
+                        child: Text(
+                          kRSD,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(width: 500),
+                      CustomInputField(
+                        label: kRSD,
+                        controller: controllerStandardAmountRSD,
+                        startingValueStandardWeight: startingValueStandardWeight,
+                        startingValueStandardDelivery: startingValueStandardDelivery,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 60),
+                ],
+              ) : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeadingContainer(label: kStandardDelivery),
+                  SizedBox(height: 20),
+                  SizedBox(
+                    width: 177,
+                    height: 19,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 30.0),
+                      child: Text(
+                        kDeliveryMass,
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 177,
-                          height: 19,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+                        child: Container(
+                          width: 450,
+                          height: 60,
+                          padding: EdgeInsets.only(left: 8, top: 8),
+                          decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(color: Colors.transparent),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  startingValueStandardWeight = newValue!;
+                                });
+                              },
+                              hint: startingValueStandardWeight == ""
+                                  ? Text("Izaberite", style: TextStyle(fontSize: 14))
+                                  : Text(startingValueStandardWeight, style: TextStyle(fontSize: 14)),
+                              items: <String>[
+                                '',
+                                '0kg - 0.5kg',
+                                '0.5kg - 1kg',
+                                '1kg - 2kg',
+                                '2kg - 5kg',
+                                '5kg - 10kg',
+                                '10kg - 15kg',
+                                '15kg - 20kg',
+                                '20kg - 30kg',
+                                '30kg - 50kg'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 177,
+                        height: 19,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 30.0),
                           child: Text(
                             kDelivery,
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                         ),
-                        SizedBox(width: 250),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.0, right: 20, top: 15),
-                          child: Container(
-                            width: 450,
-                            height: 60,
-                            padding: EdgeInsets.only(left: 8, top: 8),
-                            decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
-                              child: DropdownButton<String>(
-                                isExpanded: true,
-                                underline: Container(color: Colors.transparent),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    startingValueStandardDelivery = newValue!;
-                                  });
-                                },
-                                hint: startingValueStandardDelivery == ""
-                                    ? Text("Izaberite uslugu", style: TextStyle(fontSize: 14))
-                                    : Text(startingValueStandardDelivery, style: TextStyle(fontSize: 14)),
-                                items: <String>['', 'Danas za danas', 'Danas za sutra do 12h', 'Danas za sutra do 18h']
-                                    .map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    enabled: value == 'Danas za sutra do 12h' ? false : true,
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: value == 'Danas za sutra do 12h' ? TextStyle(color: Colors.black12) : TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+                        child: Container(
+                          width: 450,
+                          height: 60,
+                          padding: EdgeInsets.only(left: 8, top: 8),
+                          decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(color: Colors.transparent),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  startingValueStandardDelivery = newValue!;
+                                });
+                              },
+                              hint: startingValueStandardDelivery == ""
+                                  ? Text("Izaberite uslugu", style: TextStyle(fontSize: 14))
+                                  : Text(startingValueStandardDelivery, style: TextStyle(fontSize: 14)),
+                              items: <String>['', 'Danas za danas', 'Danas za sutra do 12h', 'Danas za sutra do 18h']
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  enabled: value == 'Danas za sutra do 12h' ? false : true,
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: value == 'Danas za sutra do 12h' ? TextStyle(color: Colors.black12) : TextStyle(color: Colors.black),
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 40),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 177,
-                          height: 19,
+                      ),
+                  SizedBox(height: 20),
+                  SizedBox(
+                        width: 177,
+                        height: 19,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 30.0),
                           child: Text(
                             kRSD,
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                         ),
-                        SizedBox(width: 500),
-                        CustomInputField(
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: EdgeInsets.only(left: 30.0, bottom: 20),
+                        child: CustomInputField(
                           label: kRSD,
                           controller: controllerStandardAmountRSD,
                           startingValueStandardWeight: startingValueStandardWeight,
                           startingValueStandardDelivery: startingValueStandardDelivery,
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 60),
-                  ],
-                ),
+                      ),
+                ],
               ),
                   AdditionalServicesColumn(
                     isClicked: isClicked,
@@ -218,8 +336,8 @@ class _MainScreenState extends State<MainScreen> {
                     controllerStandardAmountRSD: controllerStandardAmountRSD,
                     controllerSpecialAmountRSD: controllerSpecialAmountRSD,
                   ),
-                  SizedBox(height: 115),
-              Column(
+                  SizedBox(height: 50),
+                  MediaQuery.of(context).size.width > 950 ? Column(
                 children: [
                   HeadingContainer(label: kSpecialDelivery),
                   SizedBox(height: 20),
@@ -354,7 +472,136 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   SizedBox(height: 60),
                 ],
-              ),
+              ) : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      HeadingContainer(label: kSpecialDelivery),
+                      SizedBox(height: 20),
+                      Container(
+                        width: 177,
+                        height: 19,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 30.0),
+                          child: Text(
+                            kDeliveryType,
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+                        child: Container(
+                          width: 450,
+                          height: 60,
+                          padding: EdgeInsets.only(left: 8, top: 8),
+                          decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(color: Colors.transparent),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  startingValueSpecialType = newValue!;
+                                });
+                              },
+                              hint: startingValueSpecialType == ""
+                                  ? Text("Izaberite", style: TextStyle(fontSize: 14))
+                                  : Text(startingValueSpecialType, style: TextStyle(fontSize: 14)),
+                              items: <String>[
+                                '',
+                                'Bicikl',
+                                'Televizor do 55 incha',
+                                'Guma putnička',
+                                'Guma poluteretna',
+                                'Guma teretna',
+                                'Guma putnička sa felnom',
+                                'Guma poluteretna sa felnom',
+                                'Guma teretna sa felnom',
+                                'Traktorska guma',
+                                'Traktorska guma sa felnom',
+                                'Menjač manji',
+                                'Menjač automatski',
+                                'Auto motor'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 100,
+                        height: 19,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 30.0),
+                          child: Text(
+                            kDelivery,
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15, bottom: 20, left: 30, right: 30),
+                        child: Container(
+                          width: 450,
+                          height: 60,
+                          padding: EdgeInsets.only(left: 8, top: 8),
+                          decoration: BoxDecoration(color: Color(0xFFF9F9F9)),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 8.0, right: 8, left: 30),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              underline: Container(color: Colors.transparent),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  startingValueSpecialDelivery = newValue!;
+                                });
+                              },
+                              hint: startingValueSpecialDelivery == ""
+                                  ? Text("Izaberite uslugu", style: TextStyle(fontSize: 14))
+                                  : Text(startingValueSpecialDelivery, style: TextStyle(fontSize: 14)),
+                              items: <String>['', 'Danas za danas', 'Danas za sutra do 12h', 'Danas za sutra do 18h']
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  enabled: value == 'Danas za sutra do 12h' ? false : true,
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: value == 'Danas za sutra do 12h' ? TextStyle(color: Colors.black12) : TextStyle(color: Colors.black),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 177,
+                        height: 19,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 30.0),
+                          child: Text(
+                            kRSD,
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: EdgeInsets.only(left: 30.0, bottom: 20),
+                        child: CustomInputField(
+                          label: kRSD,
+                          controller: controllerSpecialAmountRSD,
+                          startingValueSpecialDelivery: startingValueSpecialDelivery,
+                          startingValueSpecialType: startingValueSpecialType,
+                        ),
+                      ),
+                    ],
+                  ),
                   AdditionalServicesColumn(
                     isClicked: isClicked,
                     isStandard: false,
@@ -370,7 +617,7 @@ class _MainScreenState extends State<MainScreen> {
                     controllerSpecialAmountRSD: controllerSpecialAmountRSD,
                   ),
                   SizedBox(height: 70),
-                  Row(
+                  MediaQuery.of(context).size.width > 950 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(width: 177),
@@ -395,10 +642,36 @@ class _MainScreenState extends State<MainScreen> {
                         },
                       ),
                     ],
+                  ) : Padding(
+                    padding: EdgeInsets.only(left: 50.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          child: Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width > 400 ? 375 : 300,
+                            color: Color(0xFFFF2121),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 183.0, top: 11, bottom: 11, right: 38),
+                              child: Text(
+                                kCheckPrice,
+                                style: TextStyle(fontSize: 24, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          onTap: (){
+                            setState(() {
+                              isClicked = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 50),
-                  isClicked ?
-                  Column(
+                  if(isClicked)
+                  MediaQuery.of(context).size.width > 900 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -449,7 +722,55 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                     ],
-                  ) : Container(),
+                  ) : Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(kStandardDelivery, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        SizedBox(height: 20),
+                        if(startingValueStandardWeight.isNotEmpty) Text(kDeliveryMass + startingValueStandardWeight),
+                        if(startingValueStandardWeight.isNotEmpty) SizedBox(height: 15,),
+                        if(startingValueStandardDelivery.isNotEmpty) Text(kDelivery + startingValueStandardDelivery),
+                        if(startingValueStandardDelivery.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardReturnReceipt.text.isNotEmpty) Text(kReturnReceipt + controllerStandardReturnReceipt.text),
+                        if(controllerStandardReturnReceipt.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardBackDocumentation.text.isNotEmpty) Text(kBackDocumentation + controllerStandardBackDocumentation.text),
+                        if(controllerStandardBackDocumentation.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardPaidResponse.text.isNotEmpty) Text(kPaidResponse + controllerStandardPaidResponse.text),
+                        if(controllerStandardPaidResponse.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardSMSReports.text.isNotEmpty) Text(kSMSReports + controllerStandardSMSReports.text),
+                        if(controllerStandardSMSReports.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardBuyOut.text.isNotEmpty) Text(kBuyOut + controllerStandardBuyOut.text),
+                        if(controllerStandardBuyOut.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardSendValue.text.isNotEmpty) Text(kSendValue + controllerStandardSendValue.text),
+                        if(controllerStandardSendValue.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerStandardPersonalDelivery.text.isNotEmpty) Text(kPersonalDelivery + controllerStandardPersonalDelivery.text),
+                        SizedBox(height: 40),
+                        Text(kSpecialDelivery, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        SizedBox(height: 20),
+                        if(startingValueSpecialType.isNotEmpty) Text(kDeliveryMass + startingValueSpecialType),
+                        if(startingValueSpecialType.isNotEmpty)SizedBox(height: 15,),
+                        if(startingValueSpecialDelivery.isNotEmpty) Text(kDelivery + startingValueSpecialDelivery),
+                        if(startingValueSpecialDelivery.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialReturnReceipt.text.isNotEmpty) Text(kReturnReceipt + controllerSpecialReturnReceipt.text),
+                        if(controllerSpecialReturnReceipt.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialBackDocumentation.text.isNotEmpty) Text(kBackDocumentation + controllerSpecialBackDocumentation.text),
+                        if(controllerSpecialBackDocumentation.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialPaidResponse.text.isNotEmpty) Text(kPaidResponse + controllerSpecialPaidResponse.text),
+                        if(controllerSpecialPaidResponse.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialSMSReports.text.isNotEmpty) Text(kSMSReports + controllerSpecialSMSReports.text),
+                        if(controllerSpecialSMSReports.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialBuyOut.text.isNotEmpty) Text(kBuyOut + controllerSpecialBuyOut.text),
+                        if(controllerSpecialBuyOut.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialSendValue.text.isNotEmpty) Text(kSendValue + controllerSpecialSendValue.text),
+                        if(controllerSpecialSendValue.text.isNotEmpty)SizedBox(height: 15,),
+                        if(controllerSpecialPersonalDelivery.text.isNotEmpty) Text(kPersonalDelivery + controllerSpecialPersonalDelivery.text),
+                        SizedBox(height: 40),
+                        Text(konClickTermsMessage, style: TextStyle(color: Colors.black, fontSize: 20),),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 150),
                   CustomAppFooter(),
 
