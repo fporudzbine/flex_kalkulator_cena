@@ -39,48 +39,51 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     switch(widget.label){
       case kRSD:
-        (widget.startingValueStandardWeight == "0kg - 0.5kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "600,00 RSD" :
-        (widget.startingValueStandardWeight == "0.5kg - 1kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "620,00 RSD" :
-        (widget.startingValueStandardWeight == "1kg - 2kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "640,00 RSD" :
-        (widget.startingValueStandardWeight == "2kg - 5kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "780,00 RSD" :
-        (widget.startingValueStandardWeight == "5kg - 10kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "900,00 RSD" :
-        (widget.startingValueStandardWeight == "10kg - 15kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "930,00 RSD" :
-        (widget.startingValueStandardWeight == "15kg - 20kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "950,00 RSD" :
-        (widget.startingValueStandardWeight == "20kg - 30kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "1070,00 RSD" :
-        (widget.startingValueStandardWeight == "30kg - 50kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "1220,00 RSD" :
-        (widget.startingValueStandardWeight == "0kg - 0.5kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "350,00 RSD" :
-        (widget.startingValueStandardWeight == "0.5kg - 1kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "410,00 RSD" :
-        (widget.startingValueStandardWeight == "1kg - 2kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "450,00 RSD" :
-        (widget.startingValueStandardWeight == "2kg - 5kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "580,00 RSD" :
-        (widget.startingValueStandardWeight == "5kg - 10kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "740,00 RSD" :
-        (widget.startingValueStandardWeight == "10kg - 15kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "970,00 RSD" :
-        (widget.startingValueStandardWeight == "15kg - 20kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "1020,00 RSD" :
-        (widget.startingValueStandardWeight == "20kg - 30kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "1210,00 RSD" :
-        (widget.startingValueStandardWeight == "30kg - 50kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "1560,00 RSD" :
-        (widget.startingValueSpecialType == "Bicikl") ? widget.controller.text = "1660,00 RSD" :
-        (widget.startingValueSpecialType == "Televizor do 55 incha") ? widget.controller.text = "870,00 RSD" :
-        (widget.startingValueSpecialType == "Guma putnička") ? widget.controller.text = "400,00 RSD" :
-        (widget.startingValueSpecialType == "Guma poluteretna") ? widget.controller.text = "770,00 RSD" :
-        (widget.startingValueSpecialType == "Guma teretna") ? widget.controller.text = "1590,00 RSD" :
-        (widget.startingValueSpecialType == "Guma putnička sa felnom") ? widget.controller.text = "510,00 RSD" :
-        (widget.startingValueSpecialType == "Guma poluteretna sa felnom") ? widget.controller.text = "1040,00 RSD" :
-        (widget.startingValueSpecialType == "Guma teretna sa felnom") ? widget.controller.text = "1820,00 RSD" :
-        (widget.startingValueSpecialType == "Traktorska guma") ? widget.controller.text = "1340,00 RSD" :
-        (widget.startingValueSpecialType == "Traktorska guma sa felnom") ? widget.controller.text = "1760,00 RSD" :
-        (widget.startingValueSpecialType == "Menjač manji") ? widget.controller.text = "1550,00 RSD" :
-        (widget.startingValueSpecialType == "Menjač automatski") ? widget.controller.text = "5040,00 RSD" :
-        (widget.startingValueSpecialType == "Auto motor") ? widget.controller.text = "5070,00 RSD" :
+        (widget.startingValueStandardWeight == "0kg - 0.5kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "600.00 RSD" :
+        (widget.startingValueStandardWeight == "0.5kg - 1kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "660.00 RSD" :
+        (widget.startingValueStandardWeight == "1kg - 2kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "700.00 RSD" :
+        (widget.startingValueStandardWeight == "2kg - 5kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "830.00 RSD" :
+        (widget.startingValueStandardWeight == "5kg - 10kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "990.00 RSD" :
+        (widget.startingValueStandardWeight == "10kg - 15kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "1220.00 RSD" :
+        (widget.startingValueStandardWeight == "15kg - 20kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "1270.00 RSD" :
+        (widget.startingValueStandardWeight == "20kg - 30kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "1460.00 RSD" :
+        (widget.startingValueStandardWeight == "30kg - 50kg" && widget.startingValueStandardDelivery == 'Danas za danas') ? widget.controller.text = "1810.00 RSD" :
+        (widget.startingValueStandardWeight == "0kg - 0.5kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "350.00 RSD" :
+        (widget.startingValueStandardWeight == "0.5kg - 1kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "410.00 RSD" :
+        (widget.startingValueStandardWeight == "1kg - 2kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "450.00 RSD" :
+        (widget.startingValueStandardWeight == "2kg - 5kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "580.00 RSD" :
+        (widget.startingValueStandardWeight == "5kg - 10kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "740.00 RSD" :
+        (widget.startingValueStandardWeight == "10kg - 15kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "970.00 RSD" :
+        (widget.startingValueStandardWeight == "15kg - 20kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "1020.00 RSD" :
+        (widget.startingValueStandardWeight == "20kg - 30kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "1210.00 RSD" :
+        (widget.startingValueStandardWeight == "30kg - 50kg" && widget.startingValueStandardDelivery == 'Danas za sutra do 18h') ? widget.controller.text = "1560.00 RSD" :
+        (widget.startingValueStandardWeight == 'Preko 50kg') ? widget.controller.text = 'Svaki kilogram preko 50kg se naplaćuje 40.00 RSD' :
+        (widget.startingValueSpecialType == "Bicikl") ? widget.controller.text = "1660.00 RSD" :
+        (widget.startingValueSpecialType == "Televizor do 55 incha") ? widget.controller.text = "870.00 RSD" :
+        (widget.startingValueSpecialType == "Guma putnička") ? widget.controller.text = "400.00 RSD" :
+        (widget.startingValueSpecialType == "Guma poluteretna") ? widget.controller.text = "770.00 RSD" :
+        (widget.startingValueSpecialType == "Guma teretna") ? widget.controller.text = "1590.00 RSD" :
+        (widget.startingValueSpecialType == "Guma putnička sa felnom") ? widget.controller.text = "510.00 RSD" :
+        (widget.startingValueSpecialType == "Guma poluteretna sa felnom") ? widget.controller.text = "1040.00 RSD" :
+        (widget.startingValueSpecialType == "Guma teretna sa felnom") ? widget.controller.text = "1820.00 RSD" :
+        (widget.startingValueSpecialType == "Traktorska guma") ? widget.controller.text = "1340.00 RSD" :
+        (widget.startingValueSpecialType == "Traktorska guma sa felnom") ? widget.controller.text = "1760.00 RSD" :
+        (widget.startingValueSpecialType == "Menjač manji") ? widget.controller.text = "1550.00 RSD" :
+        (widget.startingValueSpecialType == "Menjač automatski") ? widget.controller.text = "5040.00 RSD" :
+        (widget.startingValueSpecialType == "Auto motor") ? widget.controller.text = "5070.00 RSD" :
         widget.controller.text = "0";
         break;
     }
     return Container(
         color: Color(0xFFE2C7A8),
         width: 230,
-        height: 45,
+        height: widget.startingValueStandardWeight == 'Preko 50kg' ? 55 : 45,
         child: TextField(
+          textAlignVertical: TextAlignVertical.center,
+          maxLines: 2,
           controller: widget.controller,
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: widget.startingValueStandardWeight == 'Preko 50kg' ? 12 : 14),
           cursorColor: Colors.white,
           obscureText: false,
           decoration: InputDecoration(

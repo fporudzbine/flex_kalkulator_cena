@@ -23,13 +23,15 @@ dev_dependencies:
   mailer: ^5.2.0
   firebase_core: ^1.19.2
   provider: ^6.0.3
+  firebase_auth: ^3.4.2
+  cloud_firestore: ^3.3.0
 
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/flex_logo.png
-    - assets/images/header_background_image.jpeg
+    - assets/images/header_background_image.jpg
     - assets/images/viber_icon.png
     - assets/images/email_icon.png
     - assets/images/home_icon.png

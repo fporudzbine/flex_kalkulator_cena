@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:price_calculator/ui/columns/additional_services_column.dart';
 import 'package:price_calculator/ui/footer/custom_app_footer.dart';
 import 'package:price_calculator/ui/widgets/custom_input_field.dart';
 import 'package:price_calculator/ui/widgets/heading_container.dart';
 import '../labels.dart';
+import '../sum.dart';
 import 'header/custom_app_header.dart';
 
 class MainScreen extends StatefulWidget {
@@ -34,6 +36,12 @@ class _MainScreenState extends State<MainScreen> {
     TextEditingController controllerSpecialPersonalDelivery = TextEditingController();
     TextEditingController controllerSpecialAmountRSD = TextEditingController();
     TextEditingController controllerSpecialFinalAmount = TextEditingController();
+    String cutStandardRSD = '';
+    String cutSpecialRSD = '';
+    String cutSpecialAdditionalServicesRSD = '';
+    String cutStandardAdditionalServicesRSD = '';
+    double finalStandardAmountNote = 0;
+    double finalSpecialAmountNote = 0;
     String startingValueStandardWeight = "";
     String startingValueStandardDelivery = "";
     String startingValueSpecialDelivery = "";
@@ -54,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CustomAppHeader(),
+                  // CustomAppHeader(),
                   Center(
                     child: Padding(
                       padding: EdgeInsets.all(40.0),
@@ -110,7 +118,8 @@ class _MainScreenState extends State<MainScreen> {
                                 '10kg - 15kg',
                                 '15kg - 20kg',
                                 '20kg - 30kg',
-                                '30kg - 50kg'
+                                '30kg - 50kg',
+                                'Preko 50kg',
                               ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
@@ -620,23 +629,30 @@ class _MainScreenState extends State<MainScreen> {
                   MediaQuery.of(context).size.width > 950 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(width: 177),
-                      SizedBox(width: 365),
+                      Container(width: 230),
+                      SizedBox(width: 390),
                       GestureDetector(
                         child: Container(
                           height: 50,
-                          width: 375,
+                          width: 300,
                           color: Color(0xFFFF2121),
                           child: Padding(
-                            padding: EdgeInsets.only(left: 183.0, top: 11, bottom: 11, right: 38),
+                            padding: EdgeInsets.only(top: 11, bottom: 11),
                             child: Text(
                               kCheckPrice,
                               style: TextStyle(fontSize: 24, color: Colors.white),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),
                         onTap: (){
                           setState(() {
+                            cutStandardRSD = controllerStandardAmountRSD.text.length == 10 ? controllerStandardAmountRSD.text.substring(0, 3) : controllerStandardAmountRSD.text.length == 11 ? controllerStandardAmountRSD.text.substring(0, 4) : controllerStandardAmountRSD.text.length == 0 ? "0" : "0";
+                            cutStandardAdditionalServicesRSD = context.read<Sum>().sumStandard.text.length == 10 ? context.read<Sum>().sumStandard.text.substring(0, 3) : context.read<Sum>().sumStandard.text.length == 11 ? context.read<Sum>().sumStandard.text.substring(0, 4) : "0";
+                            finalStandardAmountNote = double.parse(cutStandardRSD) + double.parse(cutStandardAdditionalServicesRSD);
+                            cutSpecialRSD = controllerSpecialAmountRSD.text.length == 10 ? controllerSpecialAmountRSD.text.substring(0, 3) : controllerSpecialAmountRSD.text.length == 11 ? controllerSpecialAmountRSD.text.substring(0, 4) : "0";
+                            cutSpecialAdditionalServicesRSD = context.read<Sum>().sumSpecial.text.length == 10 ? context.read<Sum>().sumSpecial.text.substring(0, 3) : context.read<Sum>().sumSpecial.text.length == 11 ? context.read<Sum>().sumSpecial.text.substring(0, 4) : "0";
+                            finalSpecialAmountNote = double.parse(cutSpecialRSD) + double.parse(cutSpecialAdditionalServicesRSD);
                             isClicked = true;
                           });
                         },
@@ -650,18 +666,25 @@ class _MainScreenState extends State<MainScreen> {
                         GestureDetector(
                           child: Container(
                             height: 50,
-                            width: MediaQuery.of(context).size.width > 400 ? 375 : 300,
+                            width: MediaQuery.of(context).size.width > 420 ? 375 : 250,
                             color: Color(0xFFFF2121),
                             child: Padding(
-                              padding: EdgeInsets.only(left: 183.0, top: 11, bottom: 11, right: 38),
+                              padding: EdgeInsets.only(top: 11, bottom: 11, right: 38),
                               child: Text(
                                 kCheckPrice,
-                                style: TextStyle(fontSize: 24, color: Colors.white),
+                                style: TextStyle(fontSize: 24, color: Colors.white,),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
                           onTap: (){
                             setState(() {
+                              cutStandardRSD = controllerStandardAmountRSD.text.length == 10 ? controllerStandardAmountRSD.text.substring(0, 3) : controllerStandardAmountRSD.text.length == 11 ? controllerStandardAmountRSD.text.substring(0, 4) : controllerStandardAmountRSD.text.length == 0 ? "0" : "0";
+                              cutStandardAdditionalServicesRSD = context.read<Sum>().sumStandard.text.length == 10 ? context.read<Sum>().sumStandard.text.substring(0, 3) : context.read<Sum>().sumStandard.text.length == 11 ? context.read<Sum>().sumStandard.text.substring(0, 4) : "0";
+                              finalStandardAmountNote = double.parse(cutStandardRSD) + double.parse(cutStandardAdditionalServicesRSD);
+                              cutSpecialRSD = controllerSpecialAmountRSD.text.length == 10 ? controllerSpecialAmountRSD.text.substring(0, 3) : controllerSpecialAmountRSD.text.length == 11 ? controllerSpecialAmountRSD.text.substring(0, 4) : "0";
+                              cutSpecialAdditionalServicesRSD = context.read<Sum>().sumSpecial.text.length == 10 ? context.read<Sum>().sumSpecial.text.substring(0, 3) : context.read<Sum>().sumSpecial.text.length == 11 ? context.read<Sum>().sumSpecial.text.substring(0, 4) : "0";
+                              finalSpecialAmountNote = double.parse(cutSpecialRSD) + double.parse(cutSpecialAdditionalServicesRSD);
                               isClicked = true;
                             });
                           },
@@ -685,14 +708,26 @@ class _MainScreenState extends State<MainScreen> {
                               Text(kStandardDelivery, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                               SizedBox(height: 15,),
                               (startingValueStandardWeight.isEmpty) ? Container() : Text(kDeliveryMass + startingValueStandardWeight),
+                              SizedBox(height: 5,),
                               (startingValueStandardDelivery.isEmpty) ? Container() : Text(kDelivery + startingValueStandardDelivery),
+                              SizedBox(height: 5,),
+                              (controllerStandardAmountRSD.text.length == 1) ? Container() : Text(kStandardDeliveryNote + controllerStandardAmountRSD.text),
+                              SizedBox(height: 5,),
                               (controllerStandardReturnReceipt.text.isEmpty) ? Container() : Text(kReturnReceipt + controllerStandardReturnReceipt.text),
+                              SizedBox(height: 5,),
                               (controllerStandardBackDocumentation.text.isEmpty) ? Container() : Text(kBackDocumentation + controllerStandardBackDocumentation.text),
+                              SizedBox(height: 5,),
                               (controllerStandardPaidResponse.text.isEmpty) ? Container() : Text(kPaidResponse + controllerStandardPaidResponse.text),
+                              SizedBox(height: 5,),
                               (controllerStandardSMSReports.text.isEmpty) ? Container() : Text(kSMSReports + controllerStandardSMSReports.text),
+                              SizedBox(height: 5,),
                               (controllerStandardBuyOut.text.isEmpty) ? Container() : Text(kBuyOut + controllerStandardBuyOut.text),
+                              SizedBox(height: 5,),
                               (controllerStandardSendValue.text.isEmpty) ? Container() : Text(kSendValue + controllerStandardSendValue.text),
+                              SizedBox(height: 5,),
                               (controllerStandardPersonalDelivery.text.isEmpty) ? Container() : Text(kPersonalDelivery + controllerStandardPersonalDelivery.text),
+                              SizedBox(height: 15,),
+                              Text("Ukupna vrednost Vaše pošiljke iznosi $finalStandardAmountNote.00 RSD"),
                             ],
                           ),
                           SizedBox(width: 40),
@@ -703,14 +738,26 @@ class _MainScreenState extends State<MainScreen> {
                               Text(kSpecialDelivery, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                               SizedBox(height: 15,),
                               (startingValueSpecialType.isEmpty) ? Container() : Text(kDeliveryMass + startingValueSpecialType),
+                              SizedBox(height: 5,),
                               (startingValueSpecialDelivery.isEmpty) ? Container() : Text(kDelivery + startingValueSpecialDelivery),
+                              SizedBox(height: 5,),
+                              (controllerSpecialAmountRSD.text.length == 1) ? Container() : Text(kSpecialDeliveryNote + controllerSpecialAmountRSD.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialReturnReceipt.text.isEmpty) ? Container() : Text(kReturnReceipt + controllerSpecialReturnReceipt.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialBackDocumentation.text.isEmpty) ? Container() : Text(kBackDocumentation + controllerSpecialBackDocumentation.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialPaidResponse.text.isEmpty) ? Container() : Text(kPaidResponse + controllerSpecialPaidResponse.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialSMSReports.text.isEmpty) ? Container() : Text(kSMSReports + controllerSpecialSMSReports.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialBuyOut.text.isEmpty) ? Container() : Text(kBuyOut + controllerSpecialBuyOut.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialSendValue.text.isEmpty) ? Container() : Text(kSendValue + controllerSpecialSendValue.text),
+                              SizedBox(height: 5,),
                               (controllerSpecialPersonalDelivery.text.isEmpty) ? Container() : Text(kPersonalDelivery + controllerSpecialPersonalDelivery.text),
+                              SizedBox(height: 15,),
+                              Text("Ukupna vrednost vaše pošiljke iznosi $finalSpecialAmountNote.00 RSD"),
                             ],
                           ),
                         ],
@@ -746,6 +793,8 @@ class _MainScreenState extends State<MainScreen> {
                         if(controllerStandardSendValue.text.isNotEmpty) Text(kSendValue + controllerStandardSendValue.text),
                         if(controllerStandardSendValue.text.isNotEmpty)SizedBox(height: 15,),
                         if(controllerStandardPersonalDelivery.text.isNotEmpty) Text(kPersonalDelivery + controllerStandardPersonalDelivery.text),
+                        SizedBox(height: 15,),
+                        Text("Ukupna vrednost Vaše pošiljke iznosi $finalStandardAmountNote.00 RSD"),
                         SizedBox(height: 40),
                         Text(kSpecialDelivery, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                         SizedBox(height: 20),
@@ -766,14 +815,15 @@ class _MainScreenState extends State<MainScreen> {
                         if(controllerSpecialSendValue.text.isNotEmpty) Text(kSendValue + controllerSpecialSendValue.text),
                         if(controllerSpecialSendValue.text.isNotEmpty)SizedBox(height: 15,),
                         if(controllerSpecialPersonalDelivery.text.isNotEmpty) Text(kPersonalDelivery + controllerSpecialPersonalDelivery.text),
+                        SizedBox(height: 15,),
+                        Text("Ukupna vrednost vaše pošiljke iznosi $finalSpecialAmountNote.00 RSD"),
                         SizedBox(height: 40),
-                        Text(konClickTermsMessage, style: TextStyle(color: Colors.black, fontSize: 20),),
+                        Text(konClickTermsMessage, style: TextStyle(color: Colors.black, fontSize: 20), textAlign: TextAlign.center,),
                       ],
                     ),
                   ),
-                  SizedBox(height: 150),
-                  CustomAppFooter(),
-
+                  // SizedBox(height: 150),
+                  // CustomAppFooter(),
                 ],
               ),
             ),

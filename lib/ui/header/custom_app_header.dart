@@ -11,7 +11,7 @@ class CustomAppHeader extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/header_background_image.jpeg"),
+          image: AssetImage("assets/images/header_background_image.jpg"),
           fit: BoxFit.cover,
         ),
       ),
@@ -128,11 +128,11 @@ class CustomAppHeader extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  MediaQuery.of(context).size.width > 400 ?
+                  MediaQuery.of(context).size.width > 450 ?
                   Container(
                     width: MediaQuery.of(context).size.width/4.4,
                   ) : SizedBox(),
-                  MediaQuery.of(context).size.width > 400 ? Text("Kalkulator cena", style: TextStyle(color: Colors.white, fontSize: 32, letterSpacing: 2),)
+                  MediaQuery.of(context).size.width > 350 ? Text("Kalkulator cena", style: TextStyle(color: Colors.white, fontSize: 32, letterSpacing: 2),)
                   : Padding(
                     padding: EdgeInsets.only(left: 20.0),
                     child: Text("Kalkulator cena", style: TextStyle(color: Colors.white, fontSize: 32, letterSpacing: 2),),
@@ -142,7 +142,7 @@ class CustomAppHeader extends StatelessWidget {
               // SizedBox(height: 10),
               Row(
                 children: [
-                  MediaQuery.of(context).size.width > 400 ?
+                  MediaQuery.of(context).size.width > 450 ?
                   Container(
                     width: MediaQuery.of(context).size.width/5,
                   ) : SizedBox(),

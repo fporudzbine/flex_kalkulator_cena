@@ -13,7 +13,7 @@ class _CustomAppFooterState extends State<CustomAppFooter> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width > 900 ?  350 : 1100,
+      height: MediaQuery.of(context).size.width > 900 ?  400 : 1150,
       color: Color(0xffc0ad93),
       child: Column(
         mainAxisAlignment: MediaQuery.of(context).size.width > 900 ? MainAxisAlignment.center : MainAxisAlignment.start,
@@ -21,7 +21,7 @@ class _CustomAppFooterState extends State<CustomAppFooter> {
         children: [
           IntrinsicHeight(
             child: Container(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 50, bottom: 50),
               child: MediaQuery.of(context).size.width > 900 ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -251,7 +251,7 @@ class _CustomAppFooterState extends State<CustomAppFooter> {
           ),
           Divider(color: Colors.white, height: 1),
           Container(
-            height: MediaQuery.of(context).size.width > 900 ? 50 : 180,
+            height: MediaQuery.of(context).size.width > 900 ? 70 : 180,
             child: MediaQuery.of(context).size.width > 900 ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
